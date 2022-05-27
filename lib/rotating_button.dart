@@ -32,87 +32,71 @@ class RotatingButton extends StatefulWidget {
 
 class _RotatingButtonState extends State<RotatingButton>
     with SingleTickerProviderStateMixin {
-  late final AnimationController _controller;
-  late final Animation<double> _animation;
+  late final AnimationController controller;
+  late final Animation<double> animation;
 
   @override
   void initState() {
     super.initState();
-    _initController();
-    _addListener();
-    _initAnimation(
-      degrees: widget.degrees,
-      clockwise: widget.clockwise,
-    );
+    initController();
+    addListener();
+    initAnimation(degrees: widget.degrees, clockwise: widget.clockwise);
   }
 
-  @override
-  void dispose() {
-    _controller.removeStatusListener(
-      (status) {
-        if (mounted) {
-          if (status == AnimationStatus.completed) {
-            _controller.reverse();
-          }
-        }
-      },
-    );
-    _controller.dispose();
-    super.dispose();
-  }
-
-  void _initController() {
-    _controller = AnimationController(
+  void initController() {
+    controller = AnimationController(
       vsync: this,
       duration: widget.duration,
       reverseDuration: widget.duration,
     );
   }
 
-  void _addListener() {
-    _controller.addStatusListener(
-      (status) {
-        if (mounted) {
-          if (status == AnimationStatus.completed) {
-            _controller.reverse();
-          }
-        }
-      },
-    );
+  void addListener() {
+    controller.addStatusListener(listener);
   }
 
-  void _initAnimation({required double degrees, required bool clockwise}) {
+  void listener(AnimationStatus status) {
+    if (mounted) {
+      if (status == AnimationStatus.completed) {
+        controller.reverse();
+      }
+    }
+  }
+
+  @override
+  void dispose() {
+    controller
+      ..removeStatusListener(listener)
+      ..dispose();
+    super.dispose();
+  }
+
+  void initAnimation({required double degrees, required bool clockwise}) {
     final double angle = degrees * pi / 180;
 
-    _animation =
+    animation =
         Tween<double>(begin: 0, end: clockwise ? angle : -angle).animate(
       CurvedAnimation(
-        parent: _controller,
+        parent: controller,
         curve: widget.curve,
       ),
     );
   }
 
-  void _onTap() {
+  void onTap() {
     if (mounted) {
       widget.onTap();
-      _controller.forward(from: 0.0);
+      controller.forward(from: 0.0);
     }
   }
 
   @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: _onTap,
-      child: AnimatedBuilder(
-        animation: _animation,
-        builder: (context, child) {
-          return Transform.rotate(
-            angle: _animation.value,
-            child: widget.child,
-          );
-        },
-      ),
-    );
-  }
+  Widget build(BuildContext context) => GestureDetector(
+        onTap: onTap,
+        child: AnimatedBuilder(
+          animation: animation,
+          builder: (context, child) =>
+              Transform.rotate(angle: animation.value, child: widget.child),
+        ),
+      );
 }
