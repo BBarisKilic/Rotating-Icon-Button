@@ -1,0 +1,32 @@
+# Copyright 2022 The RotatingIconButton Author. All rights reserved.
+# Use of this source code is governed by a MIT-style license that
+# can be found in the LICENSE file.
+
+name: media_player
+description: A new Flutter project.
+
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.16.2 <3.0.0"
+
+dependencies:
+  cupertino_icons: ^1.0.2
+  flutter:
+    sdk: flutter
+  flutter_svg: ^1.1.0
+  rotating_button:
+    path: ../../
+
+dev_dependencies:
+  flutter_lints: ^2.0.1
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/
