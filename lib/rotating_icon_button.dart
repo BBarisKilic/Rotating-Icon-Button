@@ -74,10 +74,9 @@ class _RotatingIconButtonState extends State<RotatingIconButton>
   void listener(AnimationStatus status) {
     if (!mounted) return;
     if (widget.rotateType == RotateType.full) return;
+    if (status != AnimationStatus.completed) return;
 
-    if (status == AnimationStatus.completed) {
-      controller.reverse();
-    }
+    controller.reverse();
   }
 
   void initAnimation() {
