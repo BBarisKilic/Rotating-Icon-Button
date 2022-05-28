@@ -23,10 +23,10 @@ class RotatingIconButton extends StatefulWidget {
     this.duration = const Duration(milliseconds: 300),
     this.curve = Curves.easeInOut,
     this.shape = ButtonShape.rectangle,
+    this.elevation = 0.0,
+    this.shadowColor,
     this.background,
     this.borderRadius,
-    this.elevation,
-    this.shadowColor,
   }) : super(key: key);
 
   final void Function() onTap;
@@ -37,10 +37,10 @@ class RotatingIconButton extends StatefulWidget {
   final Duration duration;
   final Curve curve;
   final ButtonShape shape;
+  final double elevation;
+  final Color? shadowColor;
   final Color? background;
   final double? borderRadius;
-  final double? elevation;
-  final Color? shadowColor;
 
   @override
   State<RotatingIconButton> createState() => _RotatingIconButtonState();
@@ -99,7 +99,7 @@ class _RotatingIconButtonState extends State<RotatingIconButton>
         .animate(CurvedAnimation(parent: controller, curve: widget.curve));
   }
 
-  void setElevation() => elevation = widget.elevation ?? 0;
+  void setElevation() => elevation = widget.elevation;
 
   @override
   void dispose() {
@@ -118,21 +118,21 @@ class _RotatingIconButtonState extends State<RotatingIconButton>
 
   void onTapDown(TapDownDetails tapDownDetails) {
     if (!mounted) return;
-    if (widget.elevation == null) return;
+    if (widget.elevation == 0) return;
 
     setState(() => elevation = 0);
   }
 
   void onTapUp(TapUpDetails tapUpDetails) {
     if (!mounted) return;
-    if (widget.elevation == null) return;
+    if (widget.elevation == 0) return;
 
     setState(setElevation);
   }
 
   void onTapCancel() {
     if (!mounted) return;
-    if (widget.elevation == null) return;
+    if (widget.elevation == 0) return;
 
     setState(setElevation);
   }
