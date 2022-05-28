@@ -8,11 +8,50 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 
-enum RotateType { quarter, semi, full }
+/// An enum to make it easier to set the rotation type of the child widget.
+///
+/// There are three different rotation types:
+///
+/// 1- [RotateType.full]
+///
+/// 2- [RotateType.semi]
+///
+/// 3- [RotateType.quarter]
+enum RotateType {
+  /// [RotateType.quarter] => To rotate the child widget 90 degrees
+  quarter,
 
-enum ButtonShape { rectangle, circle }
+  /// [RotateType.semi] => To rotate the child widget 180 degrees
+  semi,
 
+  /// [RotateType.full] => To rotate the child widget completely.
+  full,
+}
+
+/// An enum to make it easier to set the shape of the button.
+///
+/// There are two different shapes:
+///
+/// 1- [ButtonShape.rectangle]
+///
+/// 2- [ButtonShape.circle]
+enum ButtonShape {
+  /// [ButtonShape.rectangle] => To give this button a rectangle or
+  /// square shape.
+  rectangle,
+
+  /// [ButtonShape.circle] => To give this button a circle shape.
+  circle,
+}
+
+/// [RotatingIconButton] Widget
+///
+/// Flutter package for rotating and smoothly animating any child
+/// widget of its own when tap.
+///
+/// The package has been written solely in Dart Language.
 class RotatingIconButton extends StatefulWidget {
+  /// Create [RotatingIconButton] widget.
   const RotatingIconButton({
     Key? key,
     required this.onTap,
@@ -29,17 +68,92 @@ class RotatingIconButton extends StatefulWidget {
     this.borderRadius,
   }) : super(key: key);
 
+  /// [onTap] Function that provides you the ability to control tap action.
+  ///
+  /// With this function, you can easily assign tasks to the widget.
   final void Function() onTap;
+
+  /// This widget will be displayed inside the button.
+  ///
+  /// It is required to provide a widget to show it as part of the button.
+  /// Normally Icon widget is expected as a [child] widget but it is not
+  /// limited only to it.
   final Widget child;
+
+  /// Add [padding] to the [child] widget to customize the button.
+  ///
+  /// The default value is "const EdgeInsets.all(8.0)".
   final EdgeInsetsGeometry? padding;
+
+  /// Assign a [rotateType] to set the rotation type of the [child] widget.
+  ///
+  /// Possible rotation types are:
+  ///
+  /// [RotateType.full] => To rotate the [child] widget completely.
+  ///
+  /// [RotateType.semi] => To rotate the [child] widget 180 degrees
+  /// and rotate back.
+  ///
+  /// [RotateType.quarter] => To rotate the [child] widget 90 degrees
+  /// and rotate back.
   final RotateType rotateType;
+
+  /// A variable to determine the direction of the animation.
+  ///
+  /// The default value is "true".
   final bool clockwise;
+
+  /// A variable to determine the [duration] of the animation.
+  ///
+  /// The default value is "const Duration(milliseconds: 300)".
   final Duration duration;
+
+  /// A variable to set the [curve] of the animation.
+  ///
+  /// The default value is "Curves.easeInOut".
+  ///
+  /// For more info please check the official documentation related
+  /// to this topic:
+  ///
+  /// https://api.flutter.dev/flutter/animation/Curves-class.html
   final Curve curve;
+
+  /// Assign a [shape] to set the shape of the button.
+  ///
+  /// The default value is "ButtonShape.rectangle".
+  ///
+  /// Possible shapes are:
+  ///
+  /// [ButtonShape.rectangle] => To give this button a rectangle or
+  /// square shape.
+  ///
+  /// [ButtonShape.circle] => To give this button a circle shape.
   final ButtonShape shape;
+
+  /// A variable to set the [elevation] of the button.
+  ///
+  /// The default value is "0.0".
   final double elevation;
+
+  /// A variable to set the [shadowColor] of the button.
+  ///
+  /// Please note that this color will be visible only if the
+  /// [elevation]'s value greater than 0.
   final Color? shadowColor;
+
+  /// A variable to set the [background] color of the button.
+  ///
+  /// If you want to show only the child widget that you provide, you
+  /// should set this [background] as well as the [shadowColor] colors
+  /// to "Colors.transparent".
   final Color? background;
+
+  /// A variable to set the [borderRadius] of the button.
+  ///
+  /// The default value is "0".
+  ///
+  /// Please note that this [borderRadius] will be applied to the button
+  /// only if its shape is "ButtonShape.rectangle".
   final double? borderRadius;
 
   @override
