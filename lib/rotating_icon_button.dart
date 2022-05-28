@@ -84,13 +84,13 @@ class _RotatingIconButtonState extends State<RotatingIconButton>
 
     switch (widget.rotateType) {
       case RotateType.quarter:
-        angle = 90 * pi / 180;
+        angle = pi / 2;
         break;
       case RotateType.semi:
-        angle = 180 * pi / 180;
+        angle = pi;
         break;
       case RotateType.full:
-        angle = 360 * pi / 180;
+        angle = 2 * pi;
         break;
     }
 
