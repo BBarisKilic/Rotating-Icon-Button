@@ -17,7 +17,7 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_svg: ^1.1.0
-  rotating_button:
+  rotating_icon_button:
     path: ../../
 
 dev_dependencies:

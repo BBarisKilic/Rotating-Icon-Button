@@ -4,7 +4,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:rotating_button/rotating_button.dart';
+import 'package:rotating_icon_button/rotating_icon_button.dart';
 
 void main() {
   runApp(const ExampleApp());
@@ -104,10 +104,13 @@ class _MediaPlayerState extends State<MediaPlayer> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 // Call the RotatingButton widget anywhere in your widget tree.
-                RotatingButton(
+                RotatingIconButton(
                   onTap: () {},
                   duration: const Duration(milliseconds: 200),
                   clockwise: false,
+                  background: Colors.transparent,
+                  shadowColor: Colors.transparent,
+                  padding: EdgeInsets.zero,
                   child: SvgPicture.asset(
                     'assets/backward_5.svg',
                     height: 40,
@@ -125,10 +128,13 @@ class _MediaPlayerState extends State<MediaPlayer> {
                 const SizedBox(
                   width: 20,
                 ),
-                RotatingButton(
+                RotatingIconButton(
                   onTap: () {},
                   duration: const Duration(milliseconds: 200),
                   clockwise: true,
+                  background: Colors.transparent,
+                  shadowColor: Colors.transparent,
+                  padding: EdgeInsets.zero,
                   child: SvgPicture.asset(
                     'assets/forward_5.svg',
                     height: 40,
