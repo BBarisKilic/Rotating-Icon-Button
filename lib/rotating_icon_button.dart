@@ -53,9 +53,8 @@ enum ButtonShape {
 class RotatingIconButton extends StatefulWidget {
   /// Create [RotatingIconButton] widget.
   ///
-  /// Flutter package for rotating and smoothly animating any child
-  /// widget of its own when tap. The package has been written solely
-  /// in Dart Language.
+  /// A widget for rotating and smoothly animating any child widget
+  /// of its own when tap.
   const RotatingIconButton({
     Key? key,
     required this.onTap,
