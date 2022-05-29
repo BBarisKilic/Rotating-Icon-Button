@@ -1,6 +1,6 @@
 # Rotating Icon Button | Flutter Package
 
-[Flutter](https://flutter.dev/) package for rotating and smoothly animating any child widget of its own when tap. The package has been written solely in [Dart Language](https://dart.dev/).
+[Flutter](https://flutter.dev/) package for rotating and smoothly animating any child widget of its own when tap. The package has been written solely in [Dart](https://dart.dev/) language.
 
 &nbsp;
 
