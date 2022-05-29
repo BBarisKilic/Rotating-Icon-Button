@@ -1,46 +1,35 @@
 # Example
  
-[Media Player](https://github.com/BBarisKilic/Animated-SVG/tree/master/example/media_player) - an example of basic implementation of `AnimatedSvg`. Simple project that simulates a media player. As usual, the player needs play and pause buttons. Thanks to the `AnimatedSvg` package, it is so easy to create a smooth transition between play and pause SVGs.
+[Media Player](https://github.com/BBarisKilic/Rotating-Icon-Button/tree/master/example/media_player) - an example of basic implementation of `RotatingIconButton`. Simple project that simulates a media player. As usual, the player needs backward and forward buttons. Thanks to the `RotatingIconButton` package, it is so easy to create buttons with rotating animations that perfectly fit the situation.
+
+[Mixed Buttons](https://github.com/BBarisKilic/Rotating-Icon-Button/tree/master/example/mixed_buttons) - an example of basic implementation of `RotatingIconButton`. Simple project that shows many `RotatingIconButton` in different types and shapes. It is mainly created to show you the power of this widget and help you to understand how to customize your buttons through using this widget.
 
 ---
 
 `main.dart`
 ```dart
-// Define an SvgController
-late final SvgController _controller;
-
-@override
-void initState() {
-    // Initialize SvgController
-    _controller = AnimatedSvgController();
-    super.initState();
-}
-
-@override
-void dispose() {
-    // Dispose SvgController
-    _controller.dispose();
-    super.dispose();
-}
+// Import RotatingIconButton
+import 'package:rotating_icon_button/rotating_icon_button.dart';
 
 @override
 Widget build(BuildContext context) {
-    // Call the AnimatedSvg widget anywhere in your widget tree.
-    return AnimatedSvg(
-        controller: _controller,
-        duration: const Duration(milliseconds: 600),
-        onTap: () {},
-        size: 80,
-        clockwise: false,
-        isActive: true,
-        children: [
-            SvgPicture.asset(
-                'assets/play.svg',
-            ),
-            SvgPicture.asset(
-                'assets/pause.svg',
-            ),
-        ],
+    // Call the RotatingIconButton widget anywhere in your widget tree.
+    return RotatingIconButton(
+      onTap: () {},
+      elevation: 10.0,
+      shadowColor: Colors.pink,
+      borderRadius: 20.0,
+      rotateType: RotateType.semi,
+      clockwise: false,
+      padding: const EdgeInsets.symmetric(
+        vertical: 10,
+        horizontal: 40,
+      ),
+      background: Colors.grey,
+      child: const Icon(
+        Icons.navigation,
+        color: Colors.pink,
+      ),
     );
 }
 ```
