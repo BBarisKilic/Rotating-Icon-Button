@@ -4,7 +4,7 @@
 
 name: rotating_icon_button
 description: Flutter package for rotating and smoothly animating any child widget of its own when tapped.
-version: 0.0.1
+version: 1.0.0
 homepage: https://github.com/BBarisKilic/Rotating-Button
 
 environment:
