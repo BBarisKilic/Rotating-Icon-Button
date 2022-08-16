@@ -188,7 +188,6 @@ class _RotatingIconButtonState extends State<RotatingIconButton>
   void addListener() => controller.addStatusListener(listener);
 
   void listener(AnimationStatus status) {
-    if (!mounted) return;
     if (widget.rotateType == RotateType.full) return;
     if (status != AnimationStatus.completed) return;
 
@@ -225,31 +224,26 @@ class _RotatingIconButtonState extends State<RotatingIconButton>
   }
 
   void onTap() {
-    if (!mounted) return;
-
     widget.onTap();
     controller.forward(from: 0.0);
   }
 
   void onTapDown(TapDownDetails tapDownDetails) {
-    if (!mounted) return;
     if (widget.elevation == 0) return;
 
-    setState(() => elevation = 0);
+    if (mounted) setState(() => elevation = 0);
   }
 
   void onTapUp(TapUpDetails tapUpDetails) {
-    if (!mounted) return;
     if (widget.elevation == 0) return;
 
-    setState(setElevation);
+    if (mounted) setState(setElevation);
   }
 
   void onTapCancel() {
-    if (!mounted) return;
     if (widget.elevation == 0) return;
 
-    setState(setElevation);
+    if (mounted) setState(setElevation);
   }
 
   @override
